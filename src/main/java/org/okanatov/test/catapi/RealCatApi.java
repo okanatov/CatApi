@@ -12,20 +12,19 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.StringReader;
-import java.net.URL;
-import java.util.Scanner;
 
 public class RealCatApi implements CatApi {
-    public String getRandomImage() {
-        String responseXml = "";
-        try {
-            URL url = new URL("http://thecatapi.com/api/images/get?format=xml&type=jpg");
-            Scanner in = new Scanner(url.openStream());
+    private HttpClient client;
 
-            while (in.hasNextLine()) {
-                responseXml += in.nextLine();
-            }
-        } catch (IOException e) {
+    public RealCatApi(HttpClient client) {
+        this.client = client;
+    }
+
+    public String getRandomImage() {
+        String responseXml;
+        try {
+            responseXml = client.get("http://thecatapi.com/api/images/get?format=xml&type=jpg");
+        } catch (HttpClientException e) {
             return "http://cdn.my-cool-website.com/default.jpg";
         }
 

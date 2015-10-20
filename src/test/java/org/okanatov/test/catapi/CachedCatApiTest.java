@@ -17,13 +17,6 @@ public class CachedCatApiTest {
     }
 
     @Test
-    public void testFetchesARandomUrlOfACatGif() {
-        String url = api.getRandomImage();
-        assertTrue(url.startsWith("http://"));
-        assertTrue(url.endsWith(".jpg"));
-    }
-
-    @Test
     public void testCachesARandomCatGifUrlFor3Seconds() throws InterruptedException {
         String firstUrl = api.getRandomImage();
         Thread.sleep(2000);
