@@ -10,7 +10,8 @@ public class CachedCatApi implements CatApi {
 
         if (!file.exists() || (System.currentTimeMillis() - file.lastModified() > 3000)) {
             HttpClient client = new RealHttpClient();
-            CatApi api = new RealCatApi(client);
+            XmlParser parser = new RealXmlParser();
+            CatApi api = new RealCatApi(client, parser);
             String url = api.getRandomImage();
             try (PrintWriter writer = new PrintWriter(file)) {
                 writer.print(url);

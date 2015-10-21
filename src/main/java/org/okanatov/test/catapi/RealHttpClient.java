@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class RealHttpClient implements HttpClient {
     @Override
-    public String get(String string) throws HttpClientException {
+    public String get(String string) {
         try {
             URL url = new URL(string);
             Scanner in = new Scanner(url.openStream());
