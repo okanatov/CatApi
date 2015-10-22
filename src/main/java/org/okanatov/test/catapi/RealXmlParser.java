@@ -15,7 +15,7 @@ import java.io.StringReader;
 
 public class RealXmlParser implements XmlParser {
     @Override
-    public String get(String string) {
+    public String get(String string) throws XmlParserException {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

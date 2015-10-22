@@ -9,12 +9,13 @@ public class RealCatApi implements CatApi {
         this.parser = parser;
     }
 
-    public String getRandomImage() {
+    @Override
+    public Url getRandomImage() {
         try {
             String responseXml = client.get("http://thecatapi.com/api/images/get?format=xml&type=jpg");
-            return parser.get(responseXml);
+            return Url.createFromString(parser.get(responseXml));
         } catch (HttpClientException | XmlParserException e) {
-            return "http://cdn.my-cool-website.com/default.jpg";
+            return Url.createFromString("http://cdn.my-cool-website.com/default.jpg");
         }
     }
 }

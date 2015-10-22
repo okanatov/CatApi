@@ -20,8 +20,8 @@ public class RealCatApiTest {
 
     @Test
     public void testFetchesARandomUrlOfACatGif() {
-        String url = api.getRandomImage();
-        assertTrue(url.startsWith("http://"));
-        assertTrue(url.endsWith(".jpg"));
+        Url url = api.getRandomImage();
+        assertTrue(url.toString().startsWith("http://"));
+        assertTrue(url.toString().endsWith(".jpg"));
     }
 }

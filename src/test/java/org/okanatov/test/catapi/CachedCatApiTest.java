@@ -18,11 +18,11 @@ public class CachedCatApiTest {
 
     @Test
     public void testCachesARandomCatGifUrlFor3Seconds() throws InterruptedException {
-        String firstUrl = api.getRandomImage();
+        Url firstUrl = api.getRandomImage();
         Thread.sleep(2000);
-        String secondUrl = api.getRandomImage();
+        Url secondUrl = api.getRandomImage();
         Thread.sleep(2000);
-        String thirdUrl = api.getRandomImage();
+        Url thirdUrl = api.getRandomImage();
 
         assertEquals(firstUrl, secondUrl);
         assertNotEquals(secondUrl, thirdUrl);

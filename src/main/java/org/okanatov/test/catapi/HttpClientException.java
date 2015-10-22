@@ -1,6 +1,8 @@
 package org.okanatov.test.catapi;
 
-public class HttpClientException extends RuntimeException {
+import java.io.IOException;
+
+public class HttpClientException extends IOException {
     public HttpClientException(String message) {
         super(message);
     }

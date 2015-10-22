@@ -1,6 +1,8 @@
 package org.okanatov.test.catapi;
 
-public class XmlParserException extends RuntimeException {
+import java.io.IOException;
+
+public class XmlParserException extends IOException {
     public XmlParserException(String message) {
         super(message);
     }
