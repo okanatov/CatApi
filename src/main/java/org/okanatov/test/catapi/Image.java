@@ -13,18 +13,28 @@ import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.StringReader;
 
-public class RealXmlParser implements XmlParser {
-    @Override
-    public String get(String string) throws XmlParserException {
+public class Image {
+    private Url url;
+
+    public static Image createFromResponse(String response) throws ImageException {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(new InputSource(new StringReader(string)));
+            Document doc = builder.parse(new InputSource(new StringReader(response)));
             XPathFactory xPathFactory = XPathFactory.newInstance();
             XPath path = xPathFactory.newXPath();
-            return path.evaluate("/response/data/images/image/url", doc);
+            Url url = Url.createFromString(path.evaluate("/response/data/images/image/url", doc));
+            return new Image(url);
         } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
-            throw new XmlParserException(e.getMessage());
+            throw new ImageException(e.getMessage());
         }
+    }
+
+    public Url getUrl() {
+        return url;
+    }
+
+    private Image(Url url) {
+        this.url = url;
     }
 }

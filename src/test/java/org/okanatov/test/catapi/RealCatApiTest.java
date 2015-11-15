@@ -14,8 +14,7 @@ public class RealCatApiTest {
         System.setProperty("http.proxyPort", "8080");
 
         HttpClient client = new RealHttpClient();
-        XmlParser parser = new RealXmlParser();
-        api = new RealCatApi(client, parser);
+        api = new RealCatApi(client);
     }
 
     @Test
